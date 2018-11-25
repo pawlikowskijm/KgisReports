@@ -1,4 +1,5 @@
-﻿using Microsoft.Owin;
+﻿using KgisReports.Models;
+using Microsoft.Owin;
 using Owin;
 
 [assembly: OwinStartupAttribute(typeof(KgisReports.Startup))]
@@ -8,7 +9,8 @@ namespace KgisReports
     {
         public void Configuration(IAppBuilder app)
         {
-            ConfigureAuth(app);
+            AppDbContext appDbContext = new AppDbContext();
+            appDbContext.Users.Find(1);
         }
     }
 }
