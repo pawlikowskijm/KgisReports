@@ -3,11 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28010.2046
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KgisReports", "KgisReports\KgisReports.csproj", "{ADC01D2D-BEFC-4065-83EE-CAE8EC222987}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MP.EMAIL", "MP.EMAIL\MP.EMAIL.csproj", "{E0564AA0-EC48-43F5-8379-7624A90649E9}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MP.ReportingServices", "MP.ReportingServices\MP.ReportingServices.csproj", "{8FF1F5B7-5085-424B-86AE-7FA267F2DFDE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MP.ReportingServices.ConsoleTest", "MP.ReportingServices.ConsoleTest\MP.ReportingServices.ConsoleTest.csproj", "{51E918DA-1D8D-4DCE-932C-E2D59DB4ED59}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,23 +13,19 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{ADC01D2D-BEFC-4065-83EE-CAE8EC222987}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{ADC01D2D-BEFC-4065-83EE-CAE8EC222987}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{ADC01D2D-BEFC-4065-83EE-CAE8EC222987}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{ADC01D2D-BEFC-4065-83EE-CAE8EC222987}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E0564AA0-EC48-43F5-8379-7624A90649E9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E0564AA0-EC48-43F5-8379-7624A90649E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E0564AA0-EC48-43F5-8379-7624A90649E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E0564AA0-EC48-43F5-8379-7624A90649E9}.Release|Any CPU.Build.0 = Release|Any CPU
 		{8FF1F5B7-5085-424B-86AE-7FA267F2DFDE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{8FF1F5B7-5085-424B-86AE-7FA267F2DFDE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8FF1F5B7-5085-424B-86AE-7FA267F2DFDE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8FF1F5B7-5085-424B-86AE-7FA267F2DFDE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{51E918DA-1D8D-4DCE-932C-E2D59DB4ED59}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{51E918DA-1D8D-4DCE-932C-E2D59DB4ED59}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{51E918DA-1D8D-4DCE-932C-E2D59DB4ED59}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{51E918DA-1D8D-4DCE-932C-E2D59DB4ED59}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {340AAC88-30EE-48BB-B633-D54C2F25F31F}
+		SolutionGuid = {20D62059-BBCA-461A-B865-CB7A787D766F}
 	EndGlobalSection
 EndGlobal

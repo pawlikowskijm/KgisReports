@@ -278,11 +278,11 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\MP.Framework\MP.EMAIL\MP.EMAIL.csproj">
-      <Project>{38355c6a-614f-4bb4-8245-37b852dc8996}</Project>
+    <ProjectReference Include="..\MP.EMAIL\MP.EMAIL.csproj">
+      <Project>{e0564aa0-ec48-43f5-8379-7624a90649e9}</Project>
       <Name>MP.EMAIL</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\MP.Framework\MP.ReportingServices\MP.ReportingServices.csproj">
+    <ProjectReference Include="..\MP.ReportingServices\MP.ReportingServices.csproj">
       <Project>{8ff1f5b7-5085-424b-86ae-7fa267f2dfde}</Project>
       <Name>MP.ReportingServices</Name>
     </ProjectReference>
