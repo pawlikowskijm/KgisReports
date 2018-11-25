@@ -7,9 +7,17 @@
 
     <ul class="nav navbar-nav navbar-right">
         <li>
-            @Html.ActionLink("Witaj " + Config.ApplicationUser.Login + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+            @if (Config.ApplicationUser?.Role == KgisReports.BO.User.UserRole.Admin)
+            {
+                @Html.ActionLink("Witaj " + Config.ApplicationUser.Login + "!", "Index", "Admin", routeValues: null, htmlAttributes: new { title = "Manage" })
+            }
+            else
+            {
+                @Html.ActionLink("Witaj " + Config.ApplicationUser.Login + "!", "Index", "Home", routeValues: null, htmlAttributes: new { title = "Manage" })
+            }
+
         </li>
-        <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+        <li><a href="javascript:document.getElementById('logoutForm').submit()">Wyloguj się</a></li>
     </ul>
     }
 }

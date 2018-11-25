@@ -1,4 +1,5 @@
-﻿using KgisReports.Repositories;
+﻿using KgisReports.BO;
+using KgisReports.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,23 +11,19 @@ namespace KgisReports.Services
     {
         public bool AuthorizeUser(string login, string password)
         {
-            if (IsExtraAccess(login, password)) 
-                return true;
-
             var hashedPass = Utils.PasswordHashEncryption(password);
-            var usersRepo = new UserRepository();
+            var userRepo = new UserRepository();
             
-            var result = usersRepo.Where(p => p.Login == login && p.Password == hashedPass).Any();
+            var result = userRepo.Where(p => p.Login == login && p.Password == hashedPass).Any();
             return result;
         }
 
-        public bool IsExtraAccess(string login, string password)
+        
+
+        public User GetUserByLogin(string login)
         {
-            if (login == "admin" && password == "123!")
-            {
-                return true;
-            }
-            return false;
+            var userRepo = new UserRepository();
+            return userRepo.GetByLogin(login);
         }
     }
 }

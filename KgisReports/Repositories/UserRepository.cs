@@ -8,6 +8,9 @@ namespace KgisReports.Repositories
 {
     public class UserRepository : BaseRepository<User, long>
     {
-
+        public User GetByLogin(string login)
+        {
+            return Where(p => p.Login == login).SingleOrDefault();
+        }
     }
 }

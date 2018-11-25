@@ -1,4 +1,5 @@
-﻿using System;
+﻿using KgisReports.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
@@ -34,8 +35,24 @@ namespace KgisReports
             }
             else
             {
-                Config.ApplicationUser = new BO.User { Login = login };
+                var userService = new UserService();
+                var user = userService.GetUserByLogin(login);
+                Config.ApplicationUser = user ?? throw new ApplicationException("Nie znaleziono użytkownika o podanym loginie!");
             }
+        }
+
+        public static void SetExtraAccessUser()
+        {
+            Config.ApplicationUser = new BO.User { Login = Config.ExtraAccessLogin, Role = Config.ExtraAccessUserRole };
+        }
+
+        public static bool IsExtraAccess(string login, string password)
+        {
+            if (login == Config.ExtraAccessLogin && password == Config.ExtraAccessPassword)
+            {
+                return true;
+            }
+            return false;
         }
     }
 }

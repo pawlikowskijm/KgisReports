@@ -95,5 +95,25 @@ namespace MP.ReportingServices
             }
             return reportsInfo;
         }
+
+        public ReportInfo GetReportInfo(string path)
+        {
+            var service = new ReportingService2010();
+            service.Credentials = Credentials;
+            var name = service.ListChildren("/", true).SingleOrDefault(p => p.Path == path)?.Name;
+            var parameters = service.GetItemParameters(path, null, true, null, null);
+            return new ReportInfo
+            {
+                Name = name,
+                Path = path,
+                Parameters = parameters.Select(p => new ReportParameter
+                {
+                    Name = p.Name,
+                    Prompt = p.Prompt,
+                    ValueType = Type.GetType($"System.{p.ParameterTypeName}", true, true).GetType(),
+                    DefaultValue = p.DefaultValues?.FirstOrDefault()
+                }).ToList()
+            };
+        }
     }
 }

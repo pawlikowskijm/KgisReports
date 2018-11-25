@@ -24,14 +24,19 @@ namespace KgisReports.Controllers
             {
                 return View("LoginPage", model);
             }
-            if (!userService.AuthorizeUser(model.LoginOrEmail, model.Password))
+            if (Utils.IsExtraAccess(model.LoginOrEmail, model.Password))
             {
-                ViewData["error"] = "Niepoprawne dane logowania.";
-                return View("LoginPage", model);
+                Utils.SetExtraAccessUser();
+                return RedirectToAction("Index", "Home");
+            }
+            if (userService.AuthorizeUser(model.LoginOrEmail, model.Password))
+            {
+                Utils.SetApplicationUser(model.LoginOrEmail);
+                return RedirectToAction("Index", "Home");
             }
 
-            Utils.SetApplicationUser(model.LoginOrEmail);
-            return RedirectToAction("Index", "Home");
+            ViewData["error"] = "Niepoprawne dane logowania.";
+            return View("LoginPage", model);
         }
 
         public ActionResult LogOff()

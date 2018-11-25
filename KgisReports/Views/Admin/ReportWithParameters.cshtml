@@ -1,0 +1,18 @@
+﻿@model KgisReports.Models.ReportsSendAdminModel
+
+@{
+    ViewBag.Title = "ReportWithParameters";
+}
+
+<h2>Raport - @Model.Report.Name</h2>
+
+@foreach (var parameter in Model.Report.Parameters)
+{
+    @Html.Label(parameter.Prompt ?? parameter.Name)
+    <br />
+    @Html.TextBox(parameter.Name, parameter.DefaultValue)
+}
+
+<button type="submit" class="btn btn-primary" onclick="submitReport();">Przejdź dalej</button>
+
+
