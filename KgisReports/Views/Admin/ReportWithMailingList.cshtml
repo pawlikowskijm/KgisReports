@@ -1,0 +1,126 @@
+﻿@model KgisReports.Models.ReportsSendAdminModel
+
+@{
+    ViewBag.Title = "ReportWithMailingList";
+}
+
+<h2>Wyślij raport</h2>
+<hr />
+<h3><i>@Model.Report.Name</i></h3>
+
+@using (Html.BeginForm("ReportAfterSend", "Admin", FormMethod.Post))
+{
+    @Html.HiddenFor(p => p.HasMailingList)
+    @Html.HiddenFor(p => p.HasParameters)
+    @Html.HiddenFor(p => p.Report.Name)
+    @Html.HiddenFor(p => p.Report.Path)
+
+    for (int i = 0; i < Model.Report.Parameters.Count; i++)
+    {
+        @Html.HiddenFor(model => Model.Report.Parameters[i].Name)
+        @Html.HiddenFor(model => Model.Report.Parameters[i].Value)
+    }
+
+    <div class="container">
+        <div class="row">
+
+            <div class="col-lg-7">
+                @Html.LabelFor(p => p.EmailSubject)
+                @Html.TextBoxFor(p => p.EmailSubject, new { @class = "form-control" })
+                <br />
+                @Html.LabelFor(p => p.EmailContent)
+                @Html.TextAreaFor(p => p.EmailContent, new { @class = "form-control textarea-vres" })
+            </div>
+
+        </div>
+        <br />
+        <div class="row">
+
+
+            @if (Model.HasParameters)
+            {
+                <div class="col-lg-5">
+                    <div class="row">
+                        <h4>Parametry raportu:</h4>
+                        @for (int i = 0; i < Model.Report.Parameters.Count; i++)
+                        {
+                            <div class="col-md-12">
+                                @Html.Label(Model.Report.Parameters[i].Prompt ?? Model.Report.Parameters[i].Name)
+                                <br />
+                                @Html.TextBoxFor(model => Model.Report.Parameters[i].Value, new { @class = "form-control input280" })
+                            </div>
+                        }
+                    </div>
+                </div>
+            }
+
+
+            @if (Model.HasMailingList)
+            {
+                <div class="col-md-5">
+                    <div class="row">
+                        <h4>Lista mailingowa</h4>
+                        @if (Model.Emails.Count > 1)
+                        {
+                            <label onclick="selectAll();">
+                                <a>
+                                    @Html.CheckBox("selectAll", true, new { @class = "checkbox-md" })
+                                    Zaznacz wszystkich
+                                </a>
+
+
+                            </label>
+
+                            <br />
+                            <hr />
+                        }
+
+
+                        @for (int i = 0; i < Model.Emails.Count; i++)
+                        {
+                            <label>
+                                <a>
+                                    @Html.CheckBoxFor(model => Model.ChosenEmails[i], new { @mail = $"{Model.Emails[i]}", @class = "checkbox-md" })
+                                    <text>@Model.EmailsDisplay.Values.ElementAt(i)</text>
+                                    <text>(@Model.EmailsDisplay.Keys.ElementAt(i))</text>
+                                </a>
+
+                            </label>
+                            @Html.HiddenFor(model => Model.Emails[i])
+                            <br />
+                        }
+
+                    </div>
+                </div>
+            }
+
+        </div>
+
+
+
+        <br />
+        <button type="submit" class="btn btn-primary btn-min-size">Wyślij</button>
+    </div>
+
+}
+
+<script type="text/javascript">
+
+
+    function selectAll() {
+        var selectAllCheckBox = document.getElementById('selectAll');
+        $(':checkbox').each(function () {
+            if (selectAllCheckBox.checked == true) {
+                this.checked = true;
+            }
+            else {
+                this.checked = false;
+            }
+        });
+    }
+
+    function changeState() {
+
+    }
+</script>
+

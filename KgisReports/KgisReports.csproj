@@ -213,7 +213,8 @@
     </Compile>
     <Compile Include="Repositories\BaseRepository.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
-    <Compile Include="Services\EmployeeService.cs" />
+    <Compile Include="Services\EmailService.cs" />
+    <Compile Include="Services\ReportService.cs" />
     <Compile Include="Services\UserService.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="Utils.cs" />
@@ -274,6 +275,7 @@
     <Content Include="Views\Admin\ReportWithParameters.cshtml" />
     <Content Include="Views\Admin\ReportSendPage.cshtml" />
     <Content Include="Views\Admin\ReportWithoutParameters.cshtml" />
+    <Content Include="Views\Admin\ReportWithMailingList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

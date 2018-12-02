@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Net;
 using System.Net.Mail;
 using System.Net.Mime;
@@ -29,19 +30,31 @@ namespace MP.EMAIL
 
         public void SendEmailWithAttachment(Email email)
         {
-            MailMessage mail = GetMailMessage(email);
-            _smtpServer.Credentials = _credentials;
-
-            if (email.Attachments != null)
+            MemoryStream stream = null;
+            try
             {
-                foreach (var att in email.Attachments)
+                MailMessage mail = GetMailMessage(email);
+                _smtpServer.Credentials = _credentials;
+
+                if (email.Attachments != null)
                 {
-                    var mailAttachment = new System.Net.Mail.Attachment(att.Filename, att.SystemType);
-                    mail.Attachments.Add(mailAttachment);
+                    foreach (var att in email.Attachments)
+                    {
+                        stream = new MemoryStream(att.Data);
+                        var mailAttachment = new System.Net.Mail.Attachment(stream, att.Filename, att.SystemType);
+                        mail.Attachments.Add(mailAttachment);
+                    }
+                }
+
+                _smtpServer.Send(mail);
+            }
+            finally
+            {
+                if (stream != null)
+                {
+                    stream.Close();
                 }
             }
-            
-            _smtpServer.Send(mail);
         }
 
         public void SendEmailWithAttachment(string from, string to, string subject, string content, params System.Net.Mail.Attachment[] attachments)

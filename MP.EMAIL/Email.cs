@@ -42,10 +42,11 @@ namespace MP.EMAIL
             RTF
         }
 
-        public Attachment(string filename, ContentType type)
+        public Attachment(string filename, byte[] data, ContentType type)
         {
             Filename = filename;
             Type = type;
+            Data = data;
 
             switch (type)
             {
@@ -70,6 +71,7 @@ namespace MP.EMAIL
         public string Filename { get; set; }
         public ContentType Type { get; set; }
         public string SystemType { get; }
+        public byte[] Data { get; set; }
         
     }
 }

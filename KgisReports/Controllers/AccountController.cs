@@ -15,6 +15,11 @@ namespace KgisReports.Controllers
 
         public ActionResult LoginPage()
         {
+            if (Config.ApplicationUser?.Role == BO.User.UserRole.Admin)
+            {
+                return RedirectToAction("Index", "Admin");
+            }
+
             return View();
         }
 

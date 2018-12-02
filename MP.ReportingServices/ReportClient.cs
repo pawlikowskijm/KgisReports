@@ -35,9 +35,13 @@ namespace MP.ReportingServices
         /// <param name="reportFormats">ex. BasicReport or BusinessReports/BasicReport</param>
         /// <param name="reportParams">Dictionary, where [parameterName, parameterValue]></param>
         /// <returns>Report bytes in chosen format.</returns>
-        public byte[] GetReportBytes(string reportPath, ReportFormats reportFormat, Dictionary<string, string> reportParams)
+        public byte[] GetReportBytes(string reportPath, ReportFormats reportFormat, List<ReportParameter> reportParams)
         {
-            using (Report report = new Report(ReportServerPath, reportPath, reportFormat, Credentials, reportParams))
+            if (reportPath.Count(p => p == '/') == 1)
+            {
+                reportPath = reportPath.Replace("/", "");
+            }
+            using (Report report = new Report(ReportServerPath, reportPath, reportFormat, Credentials, reportParams.ToDictionary(p => p.Name, p => p.Value)))
             {
                 using (var ms = new MemoryStream())
                 {
@@ -111,9 +115,11 @@ namespace MP.ReportingServices
                     Name = p.Name,
                     Prompt = p.Prompt,
                     ValueType = Type.GetType($"System.{p.ParameterTypeName}", true, true).GetType(),
-                    DefaultValue = p.DefaultValues?.FirstOrDefault()
+                    DefaultValue = p.DefaultValues?.FirstOrDefault(),
                 }).ToList()
             };
         }
+
+        
     }
 }

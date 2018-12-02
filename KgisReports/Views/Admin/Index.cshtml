@@ -1,22 +1,26 @@
 ﻿@model KgisReports.Models.ReportsAdminModel
 @{
-    ViewBag.Title = "Panel administratora";
+    ViewBag.Title = "Wyślij raport";
 }
 
-<h2>Panel administratora</h2>
+<h2>Wyślij raport</h2>
 <hr />
 <h4>Dostępne raporty:</h4>
-@Html.DropDownList("reports", Model.ReportNames)
-<br />
-<br />
+<div class="col-lg-5">
+    @Html.DropDownList("reports", Model.ReportNames, new { @class = "form-control" })
+    <br />
+    <button type="submit" class="btn btn-primary btn-min-size" onclick="submitReport();">Wybierz</button>
+</div>
 
-<button type="submit" class="btn btn-primary" onclick="submitReport();">Wybierz</button>
+
+
+
 @Html.Hidden("chosenReport")
 
 <script type="text/javascript">
     function submitReport() {
         var chosenReport = $('#reports').val();
-        var url = '@Url.Action("ReportCheckParameters", "Admin", new { @path = "-19950126" })'
+        var url = '@Url.Action("ReportWithMailingList", "Admin", new { @path = "-19950126" })'
             url = url.replace("-19950126", chosenReport);
         window.location.href = url;
     }

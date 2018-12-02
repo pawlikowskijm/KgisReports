@@ -22,5 +22,14 @@ namespace KgisReports.Properties {
                 return defaultInstance;
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("SELECT email, Pracownik FROM dbo.Pracownicy WHERE Aktywny = 1")]
+        public string SQL_Select_EmailName {
+            get {
+                return ((string)(this["SQL_Select_EmailName"]));
+            }
+        }
     }
 }

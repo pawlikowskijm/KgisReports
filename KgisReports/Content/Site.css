@@ -17,8 +17,20 @@
 }
 
 /* Set width on the form input elements since they're 100% wide by default */
-input,
-select,
-textarea {
+.input280 {
     max-width: 280px;
+}
+
+.textarea-vres {
+    resize: vertical;
+    min-height: 115px;
+}
+
+.checkbox-md {
+    height: 20px;
+    width: 20px;
+}
+
+.btn-min-size{
+    min-width: 100px;
 }

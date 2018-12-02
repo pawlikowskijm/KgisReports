@@ -10,7 +10,7 @@ namespace KgisReports.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            return RedirectToAction("LoginPage", "Account");
         }
 
         public ActionResult About()
